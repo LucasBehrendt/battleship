@@ -44,7 +44,7 @@ def input_name():
     while True:
         user_name = input("Please enter your name: \n")
         if validate_name(user_name):
-            print("Valid name, good job!")
+            print(f"\nWelcome {user_name}!\n")
             break
     return user_name
 
@@ -54,13 +54,37 @@ def validate_name(name):
     Validate user_name, raises ValueError if name is empty
     """
     try:
-        if len(name.strip()) < 3:
-            raise ValueError("Please provide at least 3 characters!")
+        if len(name.strip()) < 1:
+            raise ValueError("Please provide at least 1 character!")
     except ValueError as e:
         print(f"{Colours.FAIL}Invalid name: {e}{Colours.ENDC}")
         return False
 
     return True
+
+
+def display_menu():
+    """
+    Displays the main menu from where the user can navigate
+    """
+    print("=" * 22 + " Menu " + "=" * 22 + "\n")
+    print("1. Start Game")
+    print("2. Instructions")
+    print("3. Exit")
+
+    while True:
+        user_choice = input("\nPlease choose an option from the menu: \n")
+        if user_choice == "1":
+            print("start game")
+            break
+        elif user_choice == "2":
+            print("instr")
+            break
+        elif user_choice == "3":
+            print("exit")
+            break
+        else:
+            print(f"{Colours.FAIL}Please choose a valid option, between 1 and 3{Colours.ENDC}")
 
 
 def main():
@@ -69,7 +93,7 @@ def main():
     """
     welcome_page()
     user_name = input_name()
-    print(user_name)
+    display_menu()
 
 
 main()
