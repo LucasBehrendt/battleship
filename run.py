@@ -78,13 +78,46 @@ def display_menu():
             print("start game")
             break
         elif user_choice == "2":
-            print("instr")
-            break
+            instructions()
         elif user_choice == "3":
             print("exit")
             break
         else:
-            print(f"{Colours.FAIL}Please choose a valid option, between 1 and 3{Colours.ENDC}")
+            print(
+                f"{Colours.FAIL}Please choose a valid option, "
+                f"between 1 and 3{Colours.ENDC}"
+            )
+
+
+def instructions():
+    """
+    Displays instructions on how to play the game
+    """
+    print(
+        f"{Colours.BOLD}\nWelcome to a classic "
+        f"game of battleship!{Colours.ENDC}\n"
+        "\nYour objective is to sink your opponents ships before\n"
+        "your own fleet is decimated. The battle area consists\n"
+        "of a grid 8 by 8, and the ships are randomly placed.\n"
+        "To make a guess, simply enter the coordinates you wish\n"
+        "to attack and then the computer will make its guess.\n"
+        "The first to sink all ships is the winner!\n"
+        "\nGood Luck!\n"
+    )
+    # print("1. Lets play!")
+    # print("2. Back to menu")
+    while True:
+        play_return = input("1. Lets play!\n2. Back to menu\n")
+        if play_return == "1":
+            print("start")
+            break
+        elif play_return == "2":
+            display_menu()
+        else:
+            print(
+                f"{Colours.FAIL}Please choose a valid option, "
+                f"either 1 or 2{Colours.ENDC}"
+            )
 
 
 def main():
