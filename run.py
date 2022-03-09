@@ -80,8 +80,7 @@ def display_menu():
         elif user_choice == "2":
             instructions()
         elif user_choice == "3":
-            print("exit")
-            break
+            end()
         else:
             print(
                 f"{Colours.FAIL}Please choose a valid option, "
@@ -96,11 +95,13 @@ def instructions():
     print(
         f"{Colours.BOLD}\nWelcome to a classic "
         f"game of battleship!{Colours.ENDC}\n"
-        "\nYour objective is to sink your opponents ships before\n"
-        "your own fleet is decimated. The battle area consists\n"
-        "of a grid 8 by 8, and the ships are randomly placed.\n"
-        "To make a guess, simply enter the coordinates you wish\n"
-        "to attack and then the computer will make its guess.\n"
+        "\nYour objective is to sink your opponents ships\n"
+        "before your own fleet is decimated.\n"
+        "The battle area consists of a grid 8 by 8,\n"
+        "and the ships are randomly placed.\n"
+        "To make a guess, simply enter the coordinates\n"
+        "you wish to attack and then the computer will\n"
+        "make its guess.\n"
         "The first to sink all ships is the winner!\n"
         "\nGood Luck!\n"
     )
@@ -118,6 +119,25 @@ def instructions():
                 f"{Colours.FAIL}Please choose a valid option, "
                 f"either 1 or 2{Colours.ENDC}"
             )
+
+
+def end():
+    """
+    When user chooses exit, quits the game and prints a message.
+    """
+    print("\nThanks for playing! To start over,\n"
+          "click the Run Program button above.")
+    print(f"""{Colours.OKBLUE}
+ _____                 _ _
+|  __ \               | | |
+| |  \/ ___   ___   __| | |__  _   _  ___
+| | __ / _ \ / _ \ / _` | '_ \| | | |/ _ \.
+| |_\ \ (_) | (_) | (_| | |_) | |_| |  __/
+ \____/\___/ \___/ \__,_|_.__/ \__, |\___|
+                                __/ |
+                               |___/
+    {Colours.ENDC}""")
+    exit()
 
 
 def main():
