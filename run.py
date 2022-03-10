@@ -42,6 +42,7 @@ def input_name():
     Get name from user and store in variable
     """
     while True:
+        # global user_name
         user_name = input("Please enter your name: \n")
         if validate_name(user_name):
             print(f"\nWelcome {user_name}!\n")
@@ -75,8 +76,7 @@ def display_menu():
     while True:
         user_choice = input("\nPlease choose an option from the menu: \n")
         if user_choice == "1":
-            print("start game")
-            break
+            new_game()
         elif user_choice == "2":
             instructions()
         elif user_choice == "3":
@@ -110,8 +110,7 @@ def instructions():
     while True:
         play_return = input("1. Lets play!\n2. Back to menu\n")
         if play_return == "1":
-            print("start")
-            break
+            new_game()
         elif play_return == "2":
             display_menu()
         else:
@@ -119,6 +118,31 @@ def instructions():
                 f"{Colours.FAIL}Please choose a valid option, "
                 f"either 1 or 2{Colours.ENDC}"
             )
+
+
+def new_game():
+    """
+    Starts a new game and takes the users inputs
+    """
+    while True:
+        size = int(input(
+                        "What size do you wish the game board to be?\n"
+                        "Please choose an option between 4 and 8\n"
+                        ))
+        if 4 <= size <= 8:
+            break
+        else:
+            print(f"{Colours.FAIL}Please choose a valid option{Colours.ENDC}")
+    while True:
+        num_ships = int(input(
+                        "How many ships do you wish the game board to have?\n"
+                        "Please choose an option between 5 and 10\n"
+                        ))
+        if 5 <= num_ships <= 10:
+            break
+        else:
+            print(f"{Colours.FAIL}Please choose a valid option{Colours.ENDC}")
+    print(f"Board size: {size}. Number of ships: {num_ships}")
 
 
 def end():
@@ -145,6 +169,7 @@ def main():
     Run all program functions
     """
     welcome_page()
+    # global user_name
     user_name = input_name()
     display_menu()
 
