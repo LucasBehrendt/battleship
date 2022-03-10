@@ -1,4 +1,5 @@
 import random
+import string
 
 
 class Colours:
@@ -42,7 +43,7 @@ def input_name():
     Get name from user and store in variable
     """
     while True:
-        # global user_name
+        global user_name
         user_name = input("Please enter your name: \n")
         if validate_name(user_name):
             print(f"\nWelcome {user_name}!\n")
@@ -86,6 +87,38 @@ def display_menu():
                 f"{Colours.FAIL}Please choose a valid option, "
                 f"between 1 and 3{Colours.ENDC}"
             )
+
+
+class GameBoard:
+    """
+    Main class to create game boards.
+    """
+    def __init__(self, size, num_ships, name, type):
+        self.size = size
+        self.num_ships = num_ships
+        self.name = name
+        self.type = type
+        self.guesses = []
+        self.ships = []
+        self.board = [[" "] * size for i in range(size)]
+
+    def print_board(self):
+        """
+        Prints boards.
+        Source of the print gameboard:
+        https://www.youtube.com/watch?v=alJH_c9t4zw&t=324s
+        """
+        if self == user_board:
+            print(f"{user_name}'s gameboard\n")
+        elif self == computer_board:
+            print("Computer gameboard\n")
+        letters = list(string.ascii_uppercase[:self.size])
+        print("  " + " ".join(letters))
+        row_number = 1
+        for row in self.board:
+            print("%d|%s|" % (row_number, "|".join(row)))
+            row_number += 1
+        print("\n")
 
 
 def instructions():
@@ -143,6 +176,14 @@ def new_game():
         else:
             print(f"{Colours.FAIL}Please choose a valid option{Colours.ENDC}")
     print(f"Board size: {size}. Number of ships: {num_ships}")
+
+    global user_board
+    global computer_board
+    user_board = GameBoard(size, num_ships, "user", type="user")
+    computer_board = GameBoard(size, num_ships, "Computer", type="computer")
+
+    GameBoard.print_board(user_board)
+    GameBoard.print_board(computer_board)
 
 
 def end():
