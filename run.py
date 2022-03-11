@@ -1,5 +1,4 @@
 from random import randint
-import string
 
 
 class Colours:
@@ -106,20 +105,33 @@ class GameBoard:
         Prints boards.
         Source of the print gameboard loop:
         https://www.youtube.com/watch?v=alJH_c9t4zw&t=324s
-        Source of row of letters printed above gameboard:
-        https://stackoverflow.com/questions/3190122/
         """
         if self.type == "user":
             print(f"{self.name}'s gameboard")
         elif self.type == "computer":
             print("Computer gameboard")
-        letters = list(string.ascii_uppercase[:self.size])
-        print("  " + " ".join(letters))
+        col_numbers = list(range(1, self.size+1))
+        col_str = [str(i) for i in col_numbers]
+        print("  " + " ".join(col_str))
         row_number = 1
         for row in self.board:
             print("%d|%s|" % (row_number, "|".join(row)))
             row_number += 1
         print("")
+
+    def guess(self, row, col):
+        """
+        Checks whether the guess is a hit or miss and
+        saves it in guesses variable
+        Inspired by Code Institute scope video
+        """
+        self.guesses.append((row, col))
+        self.board[row][col] = "-"
+        if (row, col) in self.ships:
+            self.board[row][col] = "X"
+            return "Hit"
+        else:
+            return "Miss"
 
     def add_ship(self, row, col, type="computer"):
         """
@@ -178,6 +190,27 @@ def instructions():
             )
 
 
+def end():
+    """
+    When user chooses exit, quits the game and prints a message.
+    Ascii art source:
+    https://patorjk.com/software/taag/#p=display&f=Doom&t=Battleship
+    """
+    print("\nThanks for playing! To start over,\n"
+          "click the Run Program button above.")
+    print(f"""{Colours.OKBLUE}
+ _____                 _ _
+|  __ \               | | |
+| |  \/ ___   ___   __| | |__  _   _  ___
+| | __ / _ \ / _ \ / _` | '_ \| | | |/ _ \.
+| |_\ \ (_) | (_) | (_| | |_) | |_| |  __/
+ \____/\___/ \___/ \__,_|_.__/ \__, |\___|
+                                __/ |
+                               |___/
+    {Colours.ENDC}""")
+    exit()
+
+
 def new_game():
     """
     Starts a new game and takes the users inputs
@@ -210,27 +243,6 @@ def new_game():
 
     GameBoard.print_board(user_board)
     GameBoard.print_board(computer_board)
-
-
-def end():
-    """
-    When user chooses exit, quits the game and prints a message.
-    Ascii art source:
-    https://patorjk.com/software/taag/#p=display&f=Doom&t=Battleship
-    """
-    print("\nThanks for playing! To start over,\n"
-          "click the Run Program button above.")
-    print(f"""{Colours.OKBLUE}
- _____                 _ _
-|  __ \               | | |
-| |  \/ ___   ___   __| | |__  _   _  ___
-| | __ / _ \ / _ \ / _` | '_ \| | | |/ _ \.
-| |_\ \ (_) | (_) | (_| | |_) | |_| |  __/
- \____/\___/ \___/ \__,_|_.__/ \__, |\___|
-                                __/ |
-                               |___/
-    {Colours.ENDC}""")
-    exit()
 
 
 def main():
