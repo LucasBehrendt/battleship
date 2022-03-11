@@ -1,4 +1,4 @@
-import random
+from random import randint
 import string
 
 
@@ -48,7 +48,6 @@ def input_name():
         if validate_name(user_name):
             print(f"\nWelcome {user_name}!\n")
             break
-    return user_name
 
 
 def validate_name(name):
@@ -105,20 +104,48 @@ class GameBoard:
     def print_board(self):
         """
         Prints boards.
-        Source of the print gameboard:
+        Source of the print gameboard loop:
         https://www.youtube.com/watch?v=alJH_c9t4zw&t=324s
+        Source of row of letters printed above gameboard:
+        https://stackoverflow.com/questions/3190122/
         """
-        if self == user_board:
-            print(f"{user_name}'s gameboard\n")
-        elif self == computer_board:
-            print("Computer gameboard\n")
+        if self.type == "user":
+            print(f"{self.name}'s gameboard")
+        elif self.type == "computer":
+            print("Computer gameboard")
         letters = list(string.ascii_uppercase[:self.size])
         print("  " + " ".join(letters))
         row_number = 1
         for row in self.board:
             print("%d|%s|" % (row_number, "|".join(row)))
             row_number += 1
-        print("\n")
+        print("")
+
+    def add_ship(self, row, col, type="computer"):
+        """
+        Places ships randomly
+        Inspired by Code Institute scope video
+        """
+        if len(self.ships) >= self.num_ships:
+            # print("Error: you cannot add any more ships!")
+            pass
+        else:
+            self.ships.append((row, col))
+            if self.type == "user":
+                self.board[row][col] = "@"
+
+
+def populate_board(board):
+    """
+    Populates boards with ships
+    """
+    for ship in range(board.num_ships):
+        row = randint(0, board.size-1)
+        col = randint(0, board.size-1)
+        while board.board[row][col] == "@":
+            row = randint(0, board.size-1)
+            col = randint(0, board.size-1)
+        board.add_ship(row, col)
 
 
 def instructions():
@@ -138,8 +165,6 @@ def instructions():
         "The first to sink all ships is the winner!\n"
         "\nGood Luck!\n"
     )
-    # print("1. Lets play!")
-    # print("2. Back to menu")
     while True:
         play_return = input("1. Lets play!\n2. Back to menu\n")
         if play_return == "1":
@@ -175,12 +200,13 @@ def new_game():
             break
         else:
             print(f"{Colours.FAIL}Please choose a valid option{Colours.ENDC}")
-    print(f"Board size: {size}. Number of ships: {num_ships}")
+    print(f"Board size: {size}. Number of ships: {num_ships}\n")
 
-    global user_board
-    global computer_board
-    user_board = GameBoard(size, num_ships, "user", type="user")
-    computer_board = GameBoard(size, num_ships, "Computer", type="computer")
+    user_board = GameBoard(size, num_ships, user_name, type="user")
+    computer_board = GameBoard(size, num_ships, "computer", type="computer")
+
+    populate_board(user_board)
+    populate_board(computer_board)
 
     GameBoard.print_board(user_board)
     GameBoard.print_board(computer_board)
@@ -189,6 +215,8 @@ def new_game():
 def end():
     """
     When user chooses exit, quits the game and prints a message.
+    Ascii art source:
+    https://patorjk.com/software/taag/#p=display&f=Doom&t=Battleship
     """
     print("\nThanks for playing! To start over,\n"
           "click the Run Program button above.")
@@ -210,8 +238,7 @@ def main():
     Run all program functions
     """
     welcome_page()
-    # global user_name
-    user_name = input_name()
+    input_name()
     display_menu()
 
 
