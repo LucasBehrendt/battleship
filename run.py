@@ -160,6 +160,25 @@ def populate_board(board):
         board.add_ship(row, col)
 
 
+def validate_coordinates(board, board_2, row, col):
+    """
+    Validates and appends user guess, checks if hit or miss
+    """
+    try:
+        if (row, col) in board.guesses:
+            raise ValueError("You have already guessed those coordinates!")
+        else:
+            board.guesses.append([row, col])
+            shot = board_2.guess(row, col)
+            if shot == "Hit":
+                print(f"{board.name} hit an enemy ship!")
+            else:
+                print(f"{board.name} missed this time.")
+            # return row, col
+    except ValueError as e:
+        print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
+
+
 def make_guess(board):
     """
     Prompts the user to make a guess on the row and
@@ -266,6 +285,19 @@ def new_game():
 
     GameBoard.print_board(user_board)
     GameBoard.print_board(computer_board)
+
+    user_guess = make_guess(user_board)
+    user_row = user_guess[0]
+    user_col = user_guess[1]
+    validate = validate_coordinates(user_board, computer_board, user_row, user_col)
+
+    computer_guess = make_guess(computer_board)
+    comp_row = computer_guess[0]
+    comp_col = computer_guess[1]
+    validate_comp = validate_coordinates(computer_board, user_board, comp_row, comp_col)
+
+    # computer_guess = make_guess(computer_board)
+
 
 
 def main():
