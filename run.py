@@ -87,6 +87,9 @@ def display_menu():
             )
 
 
+scores = {"computer": 0, "user": 0}
+
+
 class GameBoard:
     """
     Main class to create game boards.
@@ -107,7 +110,7 @@ class GameBoard:
         https://www.youtube.com/watch?v=alJH_c9t4zw&t=324s
         """
         if self.type == "user":
-            print(f"{self.name}'s gameboard")
+            print(f"\n{self.name}'s gameboard")
         elif self.type == "computer":
             print("Computer gameboard")
         col_numbers = list(range(0, self.size))
@@ -167,6 +170,7 @@ def validate_coordinates(board, board_2, row, col):
     shot = board_2.guess(row, col)
     if shot == "Hit":
         print(f"{board.name} hit an enemy ship!")
+        scores[board.type] += 1
     else:
         print(f"{board.name} missed this time.")
         # return row, col
@@ -182,6 +186,7 @@ def make_guess(board, board_2):
             if board.type == "user":
                 row = int(input("Guess a row: \n"))
                 col = int(input("Guess a column: \n"))
+                print("")
             else:
                 row = randint(0, board.size-1)
                 col = randint(0, board.size-1)
@@ -191,12 +196,12 @@ def make_guess(board, board_2):
                 else:
                     continue
             elif 0 <= row <= board.size-1 and 0 <= col <= board.size-1:
-                print(board.guesses)
                 return row, col
-                break
             else:
-                raise ValueError("The coordinates are outside the board range,\n"
-                                f"please enter a number between 0 and {board.size-1}")
+                raise ValueError(
+                                "The coordinates are outside the board range,\n"
+                                f"please enter a number between 0 and {board.size-1}"
+                                )
         except ValueError as e:
             print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
 
@@ -292,15 +297,25 @@ def new_game():
         GameBoard.print_board(user_board)
         GameBoard.print_board(computer_board)
 
+        print("The scores are:")
+        print(f"{user_name}: {scores['user']}\nComputer: {scores['computer']}\n")
+
         user_guess = make_guess(user_board, computer_board)
         user_row = user_guess[0]
         user_col = user_guess[1]
-        validate = validate_coordinates(user_board, computer_board, user_row, user_col)
+        validate_coordinates(user_board, computer_board, user_row, user_col)
 
         computer_guess = make_guess(computer_board, user_board)
         comp_row = computer_guess[0]
         comp_col = computer_guess[1]
-        validate_comp = validate_coordinates(computer_board, user_board, comp_row, comp_col)
+        validate_coordinates(computer_board, user_board, comp_row, comp_col)
+
+        if scores["user"] >= num_ships:
+            print("Congratulations! You won the game!")
+            end()
+        elif scores["computer"] >= num_ships:
+            print("Game over, the computer won this time!")
+            end()
 
 
 def main():
