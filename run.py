@@ -125,7 +125,7 @@ class GameBoard:
     def guess(self, row, col):
         """
         Checks whether the guess is a hit or miss and
-        saves it in guesses variable
+        saves all guesses in guesses variable
         Inspired by Code Institute scope video
         """
         self.guesses.append((row, col))
@@ -147,7 +147,6 @@ class GameBoard:
             self.ships.append((row, col))
             if self.type == "user":
                 self.board[row][col] = "@"
-        # print(self.ships)
 
 
 def populate_board(board):
@@ -157,7 +156,7 @@ def populate_board(board):
     for ship in range(board.num_ships):
         row = randint(0, board.size-1)
         col = randint(0, board.size-1)
-        while board.board[row][col] == "@":
+        while (row, col) in board.ships:
             row = randint(0, board.size-1)
             col = randint(0, board.size-1)
         board.add_ship(row, col)
@@ -165,7 +164,8 @@ def populate_board(board):
 
 def validate_coordinates(board, board_2, row, col):
     """
-    Validates user guess, checks if hit or miss
+    Validates user guess, prints if hit or miss
+    and increments score
     """
     shot = board_2.guess(row, col)
     if shot == "Hit":
@@ -173,7 +173,6 @@ def validate_coordinates(board, board_2, row, col):
         scores[board.type] += 1
     else:
         print(f"{board.name} missed this time.")
-        # return row, col
 
 
 def make_guess(board, board_2):
@@ -192,15 +191,14 @@ def make_guess(board, board_2):
                 col = randint(0, board.size-1)
             if (row, col) in board_2.guesses:
                 if board.type == "user":
-                    raise ValueError("You have already guessed those coordinates!")
-                else:
-                    continue
+                    raise ValueError("You already guessed those coordinates!")
             elif 0 <= row <= board.size-1 and 0 <= col <= board.size-1:
                 return row, col
             else:
                 raise ValueError(
-                                "The coordinates are outside the board range,\n"
-                                f"please enter a number between 0 and {board.size-1}"
+                                "The coordinates are outside the board "
+                                "range,\nplease enter a number"
+                                f" between 0 and {board.size-1}"
                                 )
         except ValueError as e:
             print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
@@ -215,11 +213,17 @@ def instructions():
         f"game of battleship!{Colours.ENDC}\n"
         "\nYour objective is to sink your opponents ships\n"
         "before your own fleet is decimated.\n"
-        "The battle area consists of a grid 8 by 8,\n"
-        "and the ships are randomly placed.\n"
+        "The battle area consists of a board size chosen by you,\n"
+        "between 4x4 and 8x8. The number of ships can be chosen\n"
+        "to be between 5 and 10 each, and are randomly placed.\n"
         "To make a guess, simply enter the coordinates\n"
-        "you wish to attack and then the computer will\n"
-        "make its guess.\n"
+        "you wish to attack, with the upper left corner being\n"
+        "row 0 and column 0. The computer will then randomize a guess\n"
+        "and the results of the round will be displayed.\n"
+        "The ships on your board will be marked as '@' and on the\n"
+        "computers board they will be hidden.\n"
+        "A hit on an enemy ship will be marked with an 'X', while a miss\n"
+        "will be marked as '-' on the boards.\n"
         "The first to sink all ships is the winner!\n"
         "\nGood Luck!\n"
     )
@@ -270,19 +274,22 @@ def new_game():
             if 4 <= size <= 8:
                 break
             else:
-                raise ValueError(f"{Colours.FAIL}Please choose a valid option{Colours.ENDC}")
+                raise ValueError(f"{Colours.FAIL}Please choose "
+                                 f"a valid option{Colours.ENDC}")
         except ValueError as e:
             print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
     while True:
         try:
             num_ships = int(input(
-                            "How many ships do you wish the game board to have?\n"
+                            "How many ships do you wish the game board to "
+                            "have?\n"
                             "Please choose an option between 5 and 10\n"
                             ))
             if 5 <= num_ships <= 10:
                 break
             else:
-                raise ValueError(f"{Colours.FAIL}Please choose a valid option{Colours.ENDC}")
+                raise ValueError(f"{Colours.FAIL}Please choose "
+                                 f"a valid option{Colours.ENDC}")
         except ValueError as e:
             print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
 
@@ -291,14 +298,28 @@ def new_game():
     user_board = GameBoard(size, num_ships, user_name, type="user")
     computer_board = GameBoard(size, num_ships, "Computer", type="computer")
 
+    scores["computer"] = 0
+    scores["user"] = 0
+
     populate_board(user_board)
     populate_board(computer_board)
     while True:
+        print("=" * 50)
         GameBoard.print_board(user_board)
         GameBoard.print_board(computer_board)
 
         print("The scores are:")
-        print(f"{user_name}: {scores['user']}\nComputer: {scores['computer']}\n")
+        print(f"{user_name}: {scores['user']}\n"
+              f"Computer: {scores['computer']}\n")
+
+        if scores["user"] >= num_ships:
+            print("\nCongratulations! You won the game!")
+            print("Taking you back to the main menu...\n")
+            display_menu()
+        elif scores["computer"] >= num_ships:
+            print("\nGame over, the computer won this time!")
+            print("Taking you back to the main menu...\n")
+            display_menu()
 
         user_guess = make_guess(user_board, computer_board)
         user_row = user_guess[0]
@@ -309,13 +330,6 @@ def new_game():
         comp_row = computer_guess[0]
         comp_col = computer_guess[1]
         validate_coordinates(computer_board, user_board, comp_row, comp_col)
-
-        if scores["user"] >= num_ships:
-            print("Congratulations! You won the game!")
-            end()
-        elif scores["computer"] >= num_ships:
-            print("Game over, the computer won this time!")
-            end()
 
 
 def main():
