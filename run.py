@@ -3,7 +3,7 @@ from random import randint
 
 class Colours:
     """
-    Set colours to use throughout the game
+    Set colours to use on text throughout the game.
     Source: https://stackoverflow.com/questions/287871/
     """
     HEADER = '\033[95m'
@@ -19,7 +19,7 @@ class Colours:
 
 def welcome_page():
     """
-    Displays a greeting and prompts the user to choose a name
+    Displays a greeting.
     Ascii art source:
     https://patorjk.com/software/taag/#p=display&f=Doom&t=Battleship
     """
@@ -39,7 +39,8 @@ ______       _   _   _           _     _
 
 def input_name():
     """
-    Get name from user and store in variable
+    Ask the user for a name and stores it
+    in a global variable to be used in the game.
     """
     while True:
         global user_name
@@ -51,7 +52,8 @@ def input_name():
 
 def validate_name(name):
     """
-    Validate user_name, raises ValueError if name is empty
+    Validates user_name, raises ValueError if name is empty
+    or only consists of space(s).
     """
     try:
         if len(name.strip()) < 1:
@@ -65,7 +67,10 @@ def validate_name(name):
 
 def display_menu():
     """
-    Displays the main menu from where the user can navigate
+    Displays the main menu from where the user can either
+    start the game, recieve instructions on how to play,
+    or exit the program. Prints a message if the input
+    is not valid, asking for a valid option.
     """
     print("=" * 22 + " Menu " + "=" * 22 + "\n")
     print("1. Start Game")
@@ -92,7 +97,10 @@ scores = {"computer": 0, "user": 0}
 
 class GameBoard:
     """
-    Main class to create game boards.
+    Main class to create game boards. Sets board size,
+    number of ships, username and type of board(user
+    or computer). Stores guesses made and the location
+    of the randomized ships.
     """
     def __init__(self, size, num_ships, name, type):
         self.size = size
@@ -105,7 +113,9 @@ class GameBoard:
 
     def print_board(self):
         """
-        Prints boards.
+        Prints the boards with rows and columns numbered,
+        starting at 0 and a header showing who owns the board.
+        Essentially joins rows of board defined in __init__.
         Source of the print gameboard loop:
         https://www.youtube.com/watch?v=alJH_c9t4zw&t=324s
         """
@@ -125,21 +135,26 @@ class GameBoard:
     def guess(self, row, col):
         """
         Checks whether the guess is a hit or miss and
-        saves all guesses in guesses variable
-        Inspired by Code Institute scope video
+        saves all guesses in guesses variable.
+        Prints 'X' for hit and '-' for miss.
+        Inspired by Code Institute scope video.
         """
         self.guesses.append((row, col))
-        self.board[row][col] = "-"
         if (row, col) in self.ships:
             self.board[row][col] = "X"
             return "Hit"
         else:
+            self.board[row][col] = "-"
             return "Miss"
 
     def add_ship(self, row, col, type="computer"):
         """
-        Places ships randomly
-        Inspired by Code Institute scope video
+        Places ships on the board with the help
+        of randomized coordinated passed in from
+        populate_board.
+        When placing on the users board, assigns
+        a '@' to mark the location.
+        Inspired by Code Institute scope video.
         """
         if len(self.ships) >= self.num_ships:
             pass
@@ -151,7 +166,9 @@ class GameBoard:
 
 def populate_board(board):
     """
-    Populates boards with ships
+    Generates random integers as coordinates
+    for the ships to be placed on. Checks for
+    already placed ships so no overlapping occurs.
     """
     for ship in range(board.num_ships):
         row = randint(0, board.size-1)
@@ -164,8 +181,8 @@ def populate_board(board):
 
 def validate_coordinates(board, board_2, row, col):
     """
-    Validates user guess, prints if hit or miss
-    and increments score
+    Prints if a guess is a hit or
+    a miss and increments the score.
     """
     shot = board_2.guess(row, col)
     if shot == "Hit":
@@ -178,7 +195,10 @@ def validate_coordinates(board, board_2, row, col):
 def make_guess(board, board_2):
     """
     Prompts the user to make a guess on the row and
-    column respectively
+    column respectively and generates a random guess
+    for the computer. Checks the user inputs to make
+    sure they are correct and prints the relevant error
+    message if not.
     """
     while True:
         try:
@@ -206,7 +226,9 @@ def make_guess(board, board_2):
 
 def instructions():
     """
-    Displays instructions on how to play the game
+    Displays instructions on how to play the game.
+    Asks the user to either start the game or go back
+    to the main menu.
     """
     print(
         f"{Colours.BOLD}\nWelcome to a classic "
@@ -242,7 +264,8 @@ def instructions():
 
 def end():
     """
-    When user chooses exit, quits the game and prints a message.
+    When user chooses exit, quits the game and prints a goodbye
+    message, with instructions on how to run the game again.
     Ascii art source:
     https://patorjk.com/software/taag/#p=display&f=Doom&t=Battleship
     """
@@ -264,6 +287,11 @@ def end():
 def new_game():
     """
     Starts a new game and takes the users inputs
+    and creates boards with those parameters.
+    Loops through rounds of guesses until the user
+    or computer sinks all enemy ships. It then displays
+    a message with the final result and takes the user
+    back to the main menu.
     """
     while True:
         try:
@@ -335,6 +363,7 @@ def new_game():
 def main():
     """
     Run all program functions
+    move to new game?
     """
     welcome_page()
     input_name()
