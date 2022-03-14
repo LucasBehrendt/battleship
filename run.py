@@ -110,10 +110,10 @@ class GameBoard:
             print(f"{self.name}'s gameboard")
         elif self.type == "computer":
             print("Computer gameboard")
-        col_numbers = list(range(1, self.size+1))
+        col_numbers = list(range(0, self.size))
         col_str = [str(i) for i in col_numbers]
         print("  " + " ".join(col_str))
-        row_number = 1
+        row_number = 0
         for row in self.board:
             print("%d|%s|" % (row_number, "|".join(row)))
             row_number += 1
@@ -139,12 +139,12 @@ class GameBoard:
         Inspired by Code Institute scope video
         """
         if len(self.ships) >= self.num_ships:
-            # print("Error: you cannot add any more ships!")
             pass
         else:
             self.ships.append((row, col))
             if self.type == "user":
                 self.board[row][col] = "@"
+        # print(self.ships)
 
 
 def populate_board(board):
@@ -158,6 +158,29 @@ def populate_board(board):
             row = randint(0, board.size-1)
             col = randint(0, board.size-1)
         board.add_ship(row, col)
+
+
+def make_guess(board):
+    """
+    Prompts the user to make a guess on the row and
+    column respectively
+    """
+    while True:
+        try:
+            if board.type == "user":
+                row = int(input("Guess a row: \n"))
+                col = int(input("Guess a column: \n"))
+            else:
+                row = randint(0, board.size-1)
+                col = randint(0, board.size-1)
+            if 0 <= row <= board.size-1 and 0 <= col <= board.size-1:
+                # print(board.guesses)
+                return row, col
+                break
+            else:
+                raise ValueError("The coordinates are outside the board range")
+        except ValueError as e:
+            print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
 
 
 def instructions():
