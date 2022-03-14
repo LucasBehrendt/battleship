@@ -162,24 +162,17 @@ def populate_board(board):
 
 def validate_coordinates(board, board_2, row, col):
     """
-    Validates and appends user guess, checks if hit or miss
+    Validates user guess, checks if hit or miss
     """
-    try:
-        if (row, col) in board.guesses:
-            raise ValueError("You have already guessed those coordinates!")
-        else:
-            board.guesses.append([row, col])
-            shot = board_2.guess(row, col)
-            if shot == "Hit":
-                print(f"{board.name} hit an enemy ship!")
-            else:
-                print(f"{board.name} missed this time.")
-            # return row, col
-    except ValueError as e:
-        print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
+    shot = board_2.guess(row, col)
+    if shot == "Hit":
+        print(f"{board.name} hit an enemy ship!")
+    else:
+        print(f"{board.name} missed this time.")
+        # return row, col
 
 
-def make_guess(board):
+def make_guess(board, board_2):
     """
     Prompts the user to make a guess on the row and
     column respectively
@@ -192,12 +185,18 @@ def make_guess(board):
             else:
                 row = randint(0, board.size-1)
                 col = randint(0, board.size-1)
-            if 0 <= row <= board.size-1 and 0 <= col <= board.size-1:
-                # print(board.guesses)
+            if (row, col) in board_2.guesses:
+                if board.type == "user":
+                    raise ValueError("You have already guessed those coordinates!")
+                else:
+                    continue
+            elif 0 <= row <= board.size-1 and 0 <= col <= board.size-1:
+                print(board.guesses)
                 return row, col
                 break
             else:
-                raise ValueError("The coordinates are outside the board range")
+                raise ValueError("The coordinates are outside the board range,\n"
+                                f"please enter a number between 0 and {board.size-1}")
         except ValueError as e:
             print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
 
@@ -258,46 +257,50 @@ def new_game():
     Starts a new game and takes the users inputs
     """
     while True:
-        size = int(input(
-                        "What size do you wish the game board to be?\n"
-                        "Please choose an option between 4 and 8\n"
-                        ))
-        if 4 <= size <= 8:
-            break
-        else:
-            print(f"{Colours.FAIL}Please choose a valid option{Colours.ENDC}")
+        try:
+            size = int(input(
+                            "What size do you wish the game board to be?\n"
+                            "Please choose an option between 4 and 8\n"
+                            ))
+            if 4 <= size <= 8:
+                break
+            else:
+                raise ValueError(f"{Colours.FAIL}Please choose a valid option{Colours.ENDC}")
+        except ValueError as e:
+            print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
     while True:
-        num_ships = int(input(
-                        "How many ships do you wish the game board to have?\n"
-                        "Please choose an option between 5 and 10\n"
-                        ))
-        if 5 <= num_ships <= 10:
-            break
-        else:
-            print(f"{Colours.FAIL}Please choose a valid option{Colours.ENDC}")
+        try:
+            num_ships = int(input(
+                            "How many ships do you wish the game board to have?\n"
+                            "Please choose an option between 5 and 10\n"
+                            ))
+            if 5 <= num_ships <= 10:
+                break
+            else:
+                raise ValueError(f"{Colours.FAIL}Please choose a valid option{Colours.ENDC}")
+        except ValueError as e:
+            print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
+
     print(f"Board size: {size}. Number of ships: {num_ships}\n")
 
     user_board = GameBoard(size, num_ships, user_name, type="user")
-    computer_board = GameBoard(size, num_ships, "computer", type="computer")
+    computer_board = GameBoard(size, num_ships, "Computer", type="computer")
 
     populate_board(user_board)
     populate_board(computer_board)
+    while True:
+        GameBoard.print_board(user_board)
+        GameBoard.print_board(computer_board)
 
-    GameBoard.print_board(user_board)
-    GameBoard.print_board(computer_board)
+        user_guess = make_guess(user_board, computer_board)
+        user_row = user_guess[0]
+        user_col = user_guess[1]
+        validate = validate_coordinates(user_board, computer_board, user_row, user_col)
 
-    user_guess = make_guess(user_board)
-    user_row = user_guess[0]
-    user_col = user_guess[1]
-    validate = validate_coordinates(user_board, computer_board, user_row, user_col)
-
-    computer_guess = make_guess(computer_board)
-    comp_row = computer_guess[0]
-    comp_col = computer_guess[1]
-    validate_comp = validate_coordinates(computer_board, user_board, comp_row, comp_col)
-
-    # computer_guess = make_guess(computer_board)
-
+        computer_guess = make_guess(computer_board, user_board)
+        comp_row = computer_guess[0]
+        comp_col = computer_guess[1]
+        validate_comp = validate_coordinates(computer_board, user_board, comp_row, comp_col)
 
 
 def main():
