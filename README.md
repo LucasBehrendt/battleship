@@ -17,17 +17,26 @@ To read more about the game rules, please visit this [Wikipedia page.](https://e
 ## User Experience (UX) 
 ### Site Owner Goals
 
-- 
+- Develop a fun and well functioning mini game in a CLI environment.
+- Provide a simple and intuitive navigation throughout the game and give the user a positive overall impression.
+- Give the user the choise to modify the game board and number of ships, to keep the user engaged over more than a single round.
+- Write clean and readable code on which the game runs, and make sure the game doesn't break on any user inputs. 
 
-### User Stories
--	#### First Time User
--	#### Returning User
--	#### Frequent User
+### User Goals
+
+- Understand the purpose and navigation of the game instantly.
+- Play a fun and simple game against the computer.
+- View game rules and understand the logic of the game easily.
+- See the current score in mid game and view the game boards after each turn.
+- Change parameters of the game to play multiple times and have different experiences.
+
 ### Structure
+
+The structure of the game is kept simple and intuitive to make sure the user can easily navigate the game and have a positive experience. The main menu works as a hub from where the user can access the different points of the game, and when a game is finished the user is taken back to the menu. By keeping the structure simple and not too clutty, there is a pleasing flow to the game. If desired, a round of Battleship can be played in just a few minutes to reach as wide an audience as possible.
+
 ### Design
--	#### Colours
--	#### Typography
--	#### Imagery
+
+As the game is developed for a CLI environment there is no traditional design features present, aside from the text being coloured to fit some particular messages. For example, all error messages are red, and some ASCII art are coloured blue.
 
 ## Wireframes
 
