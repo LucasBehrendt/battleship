@@ -151,6 +151,100 @@ In the following section I will provide an overview of the features included in 
 
 </details>
 
+### Playing The Game
+
+- After the boards and scores are printed, the user is prompted to make a guess where an enemy ship might be. First they input a row number, followed by a column number.
+
+- If the user input doesn't match the expected input an error message is displayed, with the relevant information. If a user tries to guess coodinates already guessed, a message informing them of this will be displayed.
+
+- The computer then generates a random guess and tries its luck before the results are shown and the next turn begins.
+
+- A short message declaring a hit or miss by either side is displayed before the updated game boards and scores are printed again.
+
+- If a hit is made by either side, the enemy board recieves an 'X' to mark a sunken ship. A miss will result in a '-' to mark a previously missed guess.
+
+- As the game progresses the boards will fill with hit and miss symbols until a winner is declared. When all ships on either board are sunk, the game ends and the user is taken back to the main menu, where they can start again with new parameters if they wish.
+
+<details>
+
+<summary>User Guess image - invalid input</summary>
+
+![User Guess invalid input num](docs/images/game-invalid-num.png)
+![User Guess invalid input letter](docs/images/game-invalid-letter.png)
+![User Guess invalid input guessed](docs/images/game-invalid-guessed.png)
+
+</details>
+
+<details>
+
+<summary>User Guess image - Miss</summary>
+
+![User Guess miss](docs/images/game-miss.png)
+
+</details>
+
+<details>
+
+<summary>User Guess image - Hit</summary>
+
+![User Guess hit](docs/images/game-hit.png)
+
+</details>
+
+<details>
+
+<summary>Game Won image</summary>
+
+![Game Won 1](docs/images/game-won-1.png)
+![Game Won 2](docs/images/game-won-2.png)
+
+</details>
+
+<details>
+
+<summary>Game Over image</summary>
+
+![Game Over 1](docs/images/game-over-1.png)
+![Game Over 2](docs/images/game-over-2.png)
+
+</details>
+
+### Instructions Page
+
+- From the main menu, the user can navigate to the instructions page by typing 2. Here the user will learn how the game operates and takes input. 
+
+- When the user is ready they can start a new game straight from this page, or they can choose to go back to the main menu.
+
+- If an invalid input is recieved, an error message with instructions on valid inputs is printed.
+
+<details>
+
+<summary>Instructions Page image</summary>
+
+![Instructions Page](docs/images/instructions.png)
+
+</details>
+
+<details>
+
+<summary>Instructions Page image - invalid input</summary>
+
+![Instructions Page invalid](docs/images/instructions-invalid.png)
+
+</details>
+
+### Exit Page
+
+- When a user chooses to exit the game from the main menu, a small message thanks the user for playing and prints the word 'goodbye' in ASCII art. The user is also informed to press the 'Run Program' button to restart the game.
+
+<details>
+
+<summary>Exit Page image</summary>
+
+![Exit Page](docs/images/exit.png)
+
+</details>
+
 ### Features Left to Implement
 
 ## Testing
