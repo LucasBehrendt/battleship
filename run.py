@@ -77,6 +77,7 @@ def display_menu():
     start the game, recieve instructions on how to play,
     or exit the program. Prints a message if the input
     is not valid, asking for a valid option.
+    Clear window source: https://stackoverflow.com/questions/2084508/
     """
     print("=" * 22 + " Menu " + "=" * 22 + "\n")
     print("1. Start Game")
@@ -244,11 +245,12 @@ def make_guess(board, board_2):
             else:
                 print(
                       f"{Colours.FAIL}Invalid input: The coordinates are "
-                       "outside the board range,\nplease enter a number "
+                      "outside the board range,\nplease enter a number "
                       f"between 0 and {board.size-1}{Colours.ENDC}"
                      )
         except ValueError:
-            print(f"{Colours.FAIL}Invalid input: Please enter a number{Colours.ENDC}")
+            print(f"{Colours.FAIL}Invalid input: "
+                  f"Please enter a number{Colours.ENDC}")
 
 
 def instructions():
@@ -256,6 +258,7 @@ def instructions():
     Displays instructions on how to play the game.
     Asks the user to either start the game or go back
     to the main menu.
+    Clear window source: https://stackoverflow.com/questions/2084508/
     """
     print(
         f"{Colours.BOLD}\nWelcome to a classic "

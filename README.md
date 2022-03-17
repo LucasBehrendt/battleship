@@ -245,10 +245,39 @@ In the following section I will provide an overview of the features included in 
 
 </details>
 
-### Features Left to Implement
+### Future Features
+
+- Ships that takes up more than one grid size, much like the original game.
+
+- Highscore system through a Google Spreadsheet.
+
+- Two-player function to play against another user either locally or online.
+
+- A properly designed UI to add to the experience.
+
+## Data Model
+
+- The game utilizes a GameBoard class to create both boards, in which the input parameters, such as size and number of ships are stored. It also takes in all guesses made on each board, the location of the deployed ships, the name and type of player the board belongs to (user or computer).
+
+- The class then builds the boards with the correct parameters and prints them out. After each turn the boards are updated with the stored guesses and printed out anew.
+
+- Aside from the GameBoard class there are helper functions that are called as the game progresses, such as asking for and validating the coordinates guessed and generating random integers to use when adding the ships.
 
 ## Testing
 ### Validator Testing
+
+- To ensure that the python code is free of errors and written correctly, validation through the PEP8 online validator was performed with no errors or warnings raised.
+
+<details>
+
+<summary>PEP8 Online Validator</summary>
+
+![PEP8 Online Validator](docs/images/pep8-validator.png)
+
+</details>
+
+- All HTML and CSS code for this game was taken from the Code Institute Python Template and has not been altered in any way. Therefore any testing on this code will not be performed.
+
 ### Responsive Testing
 ### Lighthouse Testing
 ### Links and Form Testing
