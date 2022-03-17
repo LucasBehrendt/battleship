@@ -11,15 +11,12 @@ class Colours:
     Set colours to use on text throughout the game.
     Source: https://stackoverflow.com/questions/287871/
     """
-    HEADER = '\033[95m'
     OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
     OKGREEN = '\033[92m'
     WARNING = '\033[93m'
     FAIL = '\033[91m'
     ENDC = '\033[0m'
     BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
 
 def welcome_page():
@@ -240,17 +237,18 @@ def make_guess(board, board_2):
                 col = randint(0, board.size-1)
             if (row, col) in board_2.guesses:
                 if board.type == "user":
-                    raise ValueError("You already guessed those coordinates!")
+                    print(f"{Colours.FAIL}Invalid input: You already "
+                          f"guessed those coordinates!{Colours.ENDC}")
             elif 0 <= row <= board.size-1 and 0 <= col <= board.size-1:
                 return row, col
             else:
-                raise ValueError(
-                                "The coordinates are outside the board "
-                                "range,\nplease enter a number"
-                                f" between 0 and {board.size-1}"
-                                )
-        except ValueError as e:
-            print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
+                print(
+                      f"{Colours.FAIL}Invalid input: The coordinates are "
+                       "outside the board range,\nplease enter a number "
+                      f"between 0 and {board.size-1}{Colours.ENDC}"
+                     )
+        except ValueError:
+            print(f"{Colours.FAIL}Invalid input: Please enter a number{Colours.ENDC}")
 
 
 def instructions():
@@ -332,13 +330,12 @@ def new_game():
                             ))
             if 4 <= size <= 8:
                 break
-            elif size != int():
-                print("not int")
             else:
-                raise ValueError(f"{Colours.FAIL}Please choose "
-                                 f"a valid option{Colours.ENDC}")
-        except ValueError as e:
-            print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
+                print(f"{Colours.FAIL}Invalid input: Please "
+                      f"choose a valid option{Colours.ENDC}")
+        except ValueError:
+            print(f"{Colours.FAIL}Invalid input: "
+                  f"Please enter a number{Colours.ENDC}")
     while True:
         try:
             num_ships = int(input(
@@ -349,10 +346,11 @@ def new_game():
             if 5 <= num_ships <= 10:
                 break
             else:
-                raise ValueError(f"{Colours.FAIL}Please choose "
-                                 f"a valid option{Colours.ENDC}")
-        except ValueError as e:
-            print(f"{Colours.FAIL}Invalid input: {e}{Colours.ENDC}")
+                print(f"{Colours.FAIL}Invalid input: Please "
+                      f"choose a valid option{Colours.ENDC}")
+        except ValueError:
+            print(f"{Colours.FAIL}Invalid input: "
+                  f"Please enter a number{Colours.ENDC}")
 
     print(f"Board size: {size}. Number of ships: {num_ships}\n")
 
@@ -374,11 +372,13 @@ def new_game():
               f"Computer: {scores['computer']}\n")
 
         if scores["user"] >= num_ships:
-            print("\nCongratulations! You won the game!")
+            print(f"{Colours.OKGREEN}\nCongratulations! "
+                  f"You won the game!{Colours.ENDC}")
             print("Taking you back to the main menu...\n")
             display_menu()
         elif scores["computer"] >= num_ships:
-            print("\nGame over, the computer won this time!")
+            print(f"{Colours.WARNING}\nGame over, "
+                  f"the computer won this time!{Colours.ENDC}")
             print("Taking you back to the main menu...\n")
             display_menu()
 
