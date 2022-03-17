@@ -1,4 +1,9 @@
+"""
+Import random to generate random integers in game.
+Import os to clear window in game.
+"""
 from random import randint
+import os
 
 
 class Colours:
@@ -54,6 +59,10 @@ def validate_name(name):
     """
     Validates user_name, raises ValueError if name is empty
     or only consists of space(s).
+    Parameter:
+        Takes user_name input.
+    Return:
+        True if input is valid, False if not.
     """
     try:
         if len(name.strip()) < 1:
@@ -80,10 +89,13 @@ def display_menu():
     while True:
         user_choice = input("\nPlease choose an option from the menu: \n")
         if user_choice == "1":
+            os.system('cls' if os.name == 'nt' else 'clear')
             new_game()
         elif user_choice == "2":
+            os.system('cls' if os.name == 'nt' else 'clear')
             instructions()
         elif user_choice == "3":
+            os.system('cls' if os.name == 'nt' else 'clear')
             end()
         else:
             print(
@@ -101,6 +113,8 @@ class GameBoard:
     number of ships, username and type of board(user
     or computer). Stores guesses made and the location
     of the randomized ships.
+    Parameters:
+        GameBoard being built, user inputs, username and type of player.
     """
     def __init__(self, size, num_ships, name, type):
         self.size = size
@@ -118,6 +132,8 @@ class GameBoard:
         Essentially joins rows of board defined in __init__.
         Source of the print gameboard loop:
         https://www.youtube.com/watch?v=alJH_c9t4zw&t=324s
+        Parameters:
+            GameBoard being built.
         """
         if self.type == "user":
             print(f"\n{self.name}'s gameboard")
@@ -138,6 +154,10 @@ class GameBoard:
         saves all guesses in guesses variable.
         Prints 'X' for hit and '-' for miss.
         Inspired by Code Institute scope video.
+        Parameters:
+            GameBoard being built, coordinate inputs from user.
+        Return:
+            'Hit' if a ship is sunk, 'Miss' if not.
         """
         self.guesses.append((row, col))
         if (row, col) in self.ships:
@@ -155,6 +175,9 @@ class GameBoard:
         When placing on the users board, assigns
         a '@' to mark the location.
         Inspired by Code Institute scope video.
+        Parameters:
+            GameBoard being built, random coordinates for appending ships
+            and type of player.
         """
         if len(self.ships) >= self.num_ships:
             pass
@@ -169,6 +192,8 @@ def populate_board(board):
     Generates random integers as coordinates
     for the ships to be placed on. Checks for
     already placed ships so no overlapping occurs.
+    Parameter:
+        The GameBoard being populated.
     """
     for ship in range(board.num_ships):
         row = randint(0, board.size-1)
@@ -183,6 +208,8 @@ def validate_coordinates(board, board_2, row, col):
     """
     Prints if a guess is a hit or
     a miss and increments the score.
+    Parameters:
+        Both GameBoards and coodinates of guesses.
     """
     shot = board_2.guess(row, col)
     if shot == "Hit":
@@ -199,6 +226,8 @@ def make_guess(board, board_2):
     for the computer. Checks the user inputs to make
     sure they are correct and prints the relevant error
     message if not.
+    Parameters:
+        Both GameBoards to be guessed on.
     """
     while True:
         try:
@@ -252,8 +281,10 @@ def instructions():
     while True:
         play_return = input("1. Lets play!\n2. Back to menu\n")
         if play_return == "1":
+            os.system('cls' if os.name == 'nt' else 'clear')
             new_game()
         elif play_return == "2":
+            os.system('cls' if os.name == 'nt' else 'clear')
             display_menu()
         else:
             print(
@@ -301,6 +332,8 @@ def new_game():
                             ))
             if 4 <= size <= 8:
                 break
+            elif size != int():
+                print("not int")
             else:
                 raise ValueError(f"{Colours.FAIL}Please choose "
                                  f"a valid option{Colours.ENDC}")
