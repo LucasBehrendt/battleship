@@ -346,6 +346,68 @@ In the following section I will provide an overview of the features included in 
 - [Techsini](http://techsini.com/multi-mockup/index.php) - The responsive image at the top of the README came from Techsini.
 
 ## Deployment
+### Heroku
+
+The game was deployed using Heroku. The steps for the deployment process are:
+
+1. If any installs or packages were made for the project, make sure they are added to the requirements.txt file.
+
+2. To do this, simply type `pip3 freeze > requirements.txt` in the terminal and the file will be updated.
+
+3. Make sure the updated and newest version of the project is pushed to GitHub.
+
+4. Go to Heroku's website at https://www.heroku.com and sign up/log in.
+
+5. Click on the **New** button near the top right corner, and select **Create new app**.
+
+6. Name the project and set the region to the relevant one, then click the **Create app** button.
+
+7. When the app has been created, go to the **Settings** tab. Scroll down to **Config Vars** and click on **Reveal Config Vars**.
+
+8. Add the relevant Config vars for your project. For this game there are no API:s or CREDS so the only necessary one is Key: PORT and Value: 8000. 
+
+9. Below **Config Vars** you will find the **Buildpacks** section. Click on **Add buildpack** and add **Python**, click **Save changes**. Repeat the process for **nodejs** and make sure they are in the correct order, with **Python** coming first.
+
+10. Next, navigate to the **Deploy** tab and under **Deployment method** connect to your GitHub account.
+
+11. Directly below **Deployment method** there is a search bar to search for your repository. Connect the correct one to Heroku by clicking the **Connect** button.
+
+12. Scroll down to **Manual deploy** and click **Deploy Branch**, making sure that the main branch is selected.
+
+13. To enable automatic updates to the project, simply scroll up to **Automatic deploys** and click the **Enable Automatic Deploys** button.
+
+14. Your project is now hosted on Heroku, and the url can be found under the **Settings** tab, at **Domains**.
+
+The live link can be found here - [Battleship](https://battleship-pp3.herokuapp.com/)
+
+### Cloning
+
+The repository for the website can be cloned to a local machine. The cloning procedure pulls down a full copy of all the data on GitHub.com at that time. The steps required for the clone are:
+
+1. Navigate to the main page of the repository you wish to clone.
+
+2. Above the list of files, click the "code" button.
+
+3. To clone the repository using HTTPS, under "clone with HTTPS", copy the URL provided.
+
+4. Open Git Bash.
+
+5. Change the current working directory to the location where you want the cloned directory.
+
+6. Type `git clone`, and then paste the URL you copied earlier.
+     ```
+    $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY`
+    ```
+7. Press Enter to create your local clone.
+    ```
+    $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+    > Cloning into `Clone-dir`...
+    > remote: Counting objects: 10, done.
+    > remote: Compressing objects: 100% (8/8), done.
+    > remove: Total 10 (delta 1), reused 10 (delta 1)
+    > Unpacking objects: 100% (10/10), done.
+    ```
+For a more detailed explanation, see this [walkthrough](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
 ## Credits
 ### Code
