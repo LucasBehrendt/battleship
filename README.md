@@ -278,9 +278,30 @@ In the following section I will provide an overview of the features included in 
 
 - All HTML and CSS code for this game was taken from the Code Institute Python Template and has not been altered in any way. Therefore any testing on this code will not be performed.
 
-### Responsive Testing
 ### Lighthouse Testing
-### Links and Form Testing
+
+- The Lighthouse tool in Chrome DevTools was used to mainly test the games performance and to make sure there were no performance issues when running the game. It performed well in the test, indicating a smoothly running game. 
+
+- The issues raised in the lighthouse test, mainly in accessibility and SEO was due to code in the template, and is not affected by the python code written by the developer.
+
+<details>
+
+<summary>Lighthouse Report</summary>
+
+![Lighthouse Report](docs/images/lighthouse.png)
+
+</details>
+
+### Manual Testing
+
+- Extensive manual testing was done throughout the developing process, where all user inputs have the desired effect. If a user input is invalid, a relevant error message will tell the user what to input instead.
+
+- All features respond as expected and give the correct error messages when user input is invalid. Messages will be displayed in a red text colour to make sure that the user understands that an input error has occured. To see the different messages, please check the features section.
+
+- The game was also tested to make sure that the different parameters the user can choose will work as expected, so that the game boards will have the desired size and number of ships. The ship placement have been checked to make sure that no overlapping occurs and and all ships are deployed correctly. The computer inputs have been tested to make sure no duplicate guesses or other issues occur that are outside the control of the user. 
+
+- Testing was performed in both the Gitpod terminal and Code Institutes Heroku mock terminal in several different browser, such as Chrome, Edge and Firefox.
+
 ### Fixed Bugs
 ### Known/Unfixed Bugs
 
