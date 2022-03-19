@@ -303,11 +303,47 @@ In the following section I will provide an overview of the features included in 
 - Testing was performed in both the Gitpod terminal and Code Institutes Heroku mock terminal in several different browser, such as Chrome, Edge and Firefox.
 
 ### Fixed Bugs
+
+- The game boards initially started the rows and columns count on 1. This created some issues when validating user and computer coordinates. By changing to starting at 0, they match the coordinates created when an input is made, as they start with 0-index.
+
+- There was a validation issue with duplicate guesses. The turn continued instead of asking for a new guess. A solution was found by moving duplicate guess validation from validate_coordinates to make_guess inside the loop, so that if a duplicate guess is made, the user is prompted to make another guess inside the same loop as the user inputs are in.
+
+- User guesses returned a list while computer guesses returned a tuple as expected. An incorrect append to guesses in validate_coordinates was removed, as it was misstakenly placed there, and the append instead happens in the guess function.
+
+- When populating the boards, computer board ships overlapped because of an if statement checking for already added '@'. By changing to check if coordinates are in ships list, the issue was resolved.
+
+- Bad error message when user input was not integer. The ValueError raised was printed incorrectly. By changing the print statements in the error handling, the desired output is now received.
+
 ### Known/Unfixed Bugs
+
+- As of writing this readme, no known bugs remain unfixed.
 
 ## Technologies Used
 ### Languages
+
+- [Python](https://www.python.org/)
+
+#### Python Libraries
+
+- [OS](https://docs.python.org/3/library/os.html) - A Python library used for clearing the window at certain points in the game.
+
+- [Random](https://docs.python.org/3/library/random.html) - A Python library used to generate random integers in the game.
+
 ### Programs & Libraries
+
+- [Git](https://git-scm.com/) - Git was used through the Gitpod terminal to commit to Git and push to GitHub.
+
+- [GitHub](https://github.com/) - All code for the site is stored on GitHub after being pushed from Git.
+
+- [Heroku](https://www.heroku.com) - Used for hosting the game.
+
+- [Lucidchart](https://www.lucidchart.com/pages/) - The flowchart created for the game was made through Lucidchart.
+
+- [Patorjk ASCII Art Generator](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20) - The ASCII art used in the game was generated with this app.
+
+- [PEP8 Online Validator](http://pep8online.com/) - Validation of Python code was done with PEP8 Online.
+
+- [Techsini](http://techsini.com/multi-mockup/index.php) - The responsive image at the top of the README came from Techsini.
 
 ## Deployment
 
