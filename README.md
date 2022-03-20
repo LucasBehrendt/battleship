@@ -411,6 +411,23 @@ For a more detailed explanation, see this [walkthrough](https://docs.github.com/
 
 ## Credits
 ### Code
-### Content
-### Media
-### Acknowledgements
+
+All code used in the game that is not the developers is credited in code comments. The sources are listed below.
+
+- [Stackoverflow](https://stackoverflow.com/) was a great source of inspiration and helped me with several solutions throughout the game such as:
+
+  - Printing coloured text came from [this post](https://stackoverflow.com/questions/287871/).
+
+  - How to use the os.system clear command was taken from [this post](https://stackoverflow.com/questions/2084508/).
+
+  - The reason for using `if __name__ == "__main__"` came from [this post](https://stackoverflow.com/questions/419163/)
+
+- The print board loop in print_board was taken from [this youtube video](https://www.youtube.com/watch?v=alJH_c9t4zw).
+
+- [W3Schools](https://www.w3schools.com/) helped with mainly syntax issues and was very helpful when something wasn't acting as expected.
+
+- The Code Institute scope video on building a battleship game was a great source of inspiration and some of the functions in this game was taken from there, including the guess function as well as the add_ship function.
+
+- The [Code Institute Python Template](https://github.com/Code-Institute-Org/python-essentials-template) provided all the HTML and CSS code for the game.
+
+- My mentor Brian helped me with some of the code, including how to fix an issue with error handling, clearing the terminal window, how to comment the code, and more.

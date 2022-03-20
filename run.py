@@ -406,4 +406,6 @@ def main():
     display_menu()
 
 
-main()
+# Source of why to use: https://stackoverflow.com/questions/419163/
+if __name__ == "__main__":
+    main()
