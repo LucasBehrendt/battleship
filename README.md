@@ -8,13 +8,49 @@ By developing the game on Code Institutes Python Template it can be run in a web
 
 ![Responsive Image](docs/images/responsive.png)
 
+# Table of Contents
+- [Battleship](#battleship)
+  * [How To Play](#how-to-play)
+  * [User Experience (UX)](#user-experience-ux)
+    + [Site Owner Goals](#site-owner-goals)
+    + [User Goals](#user-goals)
+    + [Structure](#structure)
+    + [Design](#design)
+  * [Flowchart](#flowchart)
+  * [Features](#features)
+    + [Welcome Page](#welcome-page)
+    + [Main Menu](#main-menu)
+    + [Game Parameters](#game-parameters)
+    + [Game Boards](#game-boards)
+    + [Playing The Game](#playing-the-game)
+    + [Instructions Page](#instructions-page)
+    + [Exit Page](#exit-page)
+    + [Future Features](#future-features)
+  * [Data Model](#data-model)
+  * [Testing](#testing)
+    + [Validator Testing](#validator-testing)
+    + [Lighthouse Testing](#lighthouse-testing)
+    + [Manual Testing](#manual-testing)
+    + [Fixed Bugs](#fixed-bugs)
+    + [Known/Unfixed Bugs](#knownunfixed-bugs)
+  * [Technologies Used](#technologies-used)
+    + [Languages](#languages)
+    + [Programs & Libraries](#programs--libraries)
+  * [Deployment](#deployment)
+    + [Heroku](#heroku)
+    + [Cloning](#cloning)
+  * [Credits](#credits)
+    + [Code](#code)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 ## How To Play
 
 Battleship is a board game where the objective is to sink all your opponents ships before your own ships are destroyed. This version of the game lets the user first enter a name and then gets taken to the main menu, where they can choose to jump straight into the game, read instructions on how to play or exit the game. When starting a new game the user chooses a board size between 4x4 and 8x8 to play against the computer on. The user is also asked to input how many ships are to be deployed, between 5 and 10 on each board. With the parameters set, the boards are created and populated with randomly placed ships. The user and computer then take turns guessing coordinates to try and hit each others ships. The users ships are marked with '@' while the computers ships are hidden. A hit on an enemy ship is marked with 'X' and a miss is marked with '-'. The first to sink all enemy ships is the winner!
 
 To read more about the game rules, please visit this [Wikipedia page](https://en.wikipedia.org/wiki/Battleship_(game)).
 
-## User Experience (UX) 
+## User Experience (UX)
 ### Site Owner Goals
 
 - Develop a fun and well functioning mini game in a CLI environment.
@@ -431,3 +467,5 @@ All code used in the game that is not the developers is credited in code comment
 - The [Code Institute Python Template](https://github.com/Code-Institute-Org/python-essentials-template) provided all the HTML and CSS code for the game.
 
 - My mentor Brian helped me with some of the code, including how to fix an issue with error handling, clearing the terminal window, how to comment the code, and more.
+
+[Back to top](#battleship)
