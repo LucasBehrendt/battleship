@@ -1,8 +1,8 @@
 # Battleship
 
-Battleship is a Python terminal game based on the classic with the same name. It is a turn-based guessing game where you play against the computer and try to sink your enemys battleships before your own fleet is destroyed. The user can choose both the grid size and the number of ships to be deployed on each board.
+Battleship is a Python terminal game based on the classic with the same name. It is a turn-based guessing game where you play against the computer and try to sink your enemies battleships before your own fleet is destroyed. The user can choose both the grid size and the number of ships to be deployed on each board.
 
-By developing the game on Code Institutes Python Template it can be run in a web browser, as opposed to only being able to run on a CLI or Command Line Interface.
+By developing the game on Code Institutes Python Template, it can be run in a web browser, as opposed to only being able to run on a CLI or Command Line Interface.
 
 [Find the live website here!](https://battleship-pp3.herokuapp.com/)
 
@@ -46,18 +46,18 @@ By developing the game on Code Institutes Python Template it can be run in a web
 
 ## How To Play
 
-Battleship is a board game where the objective is to sink all your opponents ships before your own ships are destroyed. This version of the game lets the user first enter a name and then gets taken to the main menu, where they can choose to jump straight into the game, read instructions on how to play or exit the game. When starting a new game the user chooses a board size between 4x4 and 8x8 to play against the computer on. The user is also asked to input how many ships are to be deployed, between 5 and 10 on each board. With the parameters set, the boards are created and populated with randomly placed ships. The user and computer then take turns guessing coordinates to try and hit each others ships. The users ships are marked with '@' while the computers ships are hidden. A hit on an enemy ship is marked with 'X' and a miss is marked with '-'. The first to sink all enemy ships is the winner!
+Battleship is a board game where the objective is to sink all your opponents ships before your own ships are destroyed. This version of the game lets the user first enter a name and then gets taken to the main menu, where they can choose to jump straight into the game, read instructions on how to play or exit the game. When starting a new game, the user chooses a board size between 4x4 and 8x8 to play against the computer on. The user is also asked to input how many ships are to be deployed, between 5 and 10 on each board. With the parameters set, the boards are created and populated with randomly placed ships. The user and computer then take turns guessing coordinates to try and hit each others ships. The users ships are marked with '@' while the computers ships are hidden. A hit on an enemy ship is marked with 'X' and a miss is marked with '-'. The first to sink all enemy ships is the winner!
 
 To read more about the game rules, please visit this [Wikipedia page](https://en.wikipedia.org/wiki/Battleship_(game)).
 
 ## User Experience (UX)
 ### Site Owner Goals
 
-- Develop a fun and well functioning mini game in a CLI environment.
+- Develop a fun and well-functioning mini game in a CLI environment.
 
 - Provide a simple and intuitive navigation throughout the game and give the user a positive overall impression.
 
-- Give the user the choise to modify the game board and number of ships, to keep the user engaged over more than a single round.
+- Give the user the choice to modify the game board and number of ships, to keep the user engaged over more than a single round.
 
 - Write clean and readable code on which the game runs, and make sure the game doesn't break on any user inputs. 
 
@@ -75,7 +75,7 @@ To read more about the game rules, please visit this [Wikipedia page](https://en
 
 ### Structure
 
-The structure of the game is kept simple and intuitive to make sure the user can easily navigate the game and have a positive experience. The main menu works as a hub from where the user can access the different points of the game, and when a game is finished the user is taken back to the menu. By keeping the structure simple and not too clutty, there is a pleasing flow to the game. If desired, a round of Battleship can be played in just a few minutes to reach as wide an audience as possible.
+The structure of the game is kept simple and intuitive to make sure the user can easily navigate the game and have a positive experience. The main menu works as a hub from where the user can access the different points of the game, and when a game is finished the user is taken back to the menu. By keeping the structure simple and not too clotty, there is a pleasing flow to the game. If desired, a round of Battleship can be played in just a few minutes to reach as wide an audience as possible.
 
 ### Design
 
@@ -121,11 +121,11 @@ In the following section I will provide an overview of the features included in 
 
 ### Main Menu
 
-- After a valid name is recieved, the main menu is displayed. From here the user can navigate to different points in the game.
+- After a valid name is received, the main menu is displayed. From here the user can navigate to different points in the game.
 
 - To start the game, the user simply types 1. Instructions on how to play can be found by typing 2. If the user wishes to exit the game, they type 3.
 
-- If an invalid input is recieved, an error message with instructions on valid inputs is printed.
+- If an invalid input is received, an error message with instructions on valid inputs is printed.
 
 <details>
 
@@ -149,7 +149,7 @@ In the following section I will provide an overview of the features included in 
 
 - If the user inputs invalid parameters a relevant error message will be displayed that lets the user type a valid option.
 
-- When the choises are made, the board size and number of ships are printed out and the game begins.
+- When the choices are made, the board size and number of ships are printed out and the game begins.
 
 <details>
 
@@ -171,7 +171,7 @@ In the following section I will provide an overview of the features included in 
 
 - When parameters are set, the game boards are printed out and populated with the specified number of ships.
 
-- The ships are randomly assigned to both boards and are checked to make sure they don't overlapp.
+- The ships are randomly assigned to both boards and are checked to make sure they don't overlap.
 
 - Numbers are printed along the rows and columns to help the user easier find the coordinates.
 
@@ -189,15 +189,15 @@ In the following section I will provide an overview of the features included in 
 
 ### Playing The Game
 
-- After the boards and scores are printed, the user is prompted to make a guess where an enemy ship might be. First they input a row number, followed by a column number.
+- After the boards and scores are printed, the user is prompted to make a guess where an enemy ship might be. First, they input a row number, followed by a column number.
 
-- If the user input doesn't match the expected input an error message is displayed, with the relevant information. If a user tries to guess coodinates already guessed, a message informing them of this will be displayed.
+- If the user input doesn't match the expected input an error message is displayed, with the relevant information. If a user tries to guess coordinates already guessed, a message informing them of this will be displayed.
 
 - The computer then generates a random guess and tries its luck before the results are shown and the next turn begins.
 
 - A short message declaring a hit or miss by either side is displayed before the updated game boards and scores are printed again.
 
-- If a hit is made by either side, the enemy board recieves an 'X' to mark a sunken ship. A miss will result in a '-' to mark a previously missed guess.
+- If a hit is made by either side, the enemy board receives an 'X' to mark a sunken ship. A miss will result in a '-' to mark a previously missed guess.
 
 - As the game progresses the boards will fill with hit and miss symbols until a winner is declared. When all ships on either board are sunk, the game ends and the user is taken back to the main menu, where they can start again with new parameters if they wish.
 
@@ -249,9 +249,9 @@ In the following section I will provide an overview of the features included in 
 
 - From the main menu, the user can navigate to the instructions page by typing 2. Here the user will learn how the game operates and takes input. 
 
-- When the user is ready they can start a new game straight from this page, or they can choose to go back to the main menu.
+- When the user is ready, they can start a new game straight from this page, or they can choose to go back to the main menu.
 
-- If an invalid input is recieved, an error message with instructions on valid inputs is printed.
+- If an invalid input is received, an error message with instructions on valid inputs is printed.
 
 <details>
 
@@ -283,9 +283,9 @@ In the following section I will provide an overview of the features included in 
 
 ### Future Features
 
-- Ships that takes up more than one grid size, much like the original game.
+- Ships that take up more than one grid size, much like the original game.
 
-- Highscore system through a Google Spreadsheet.
+- High score system through a Google Spreadsheet.
 
 - Two-player function to play against another user either locally or online.
 
@@ -312,13 +312,13 @@ In the following section I will provide an overview of the features included in 
 
 </details>
 
-- All HTML and CSS code for this game was taken from the Code Institute Python Template and has not been altered in any way. Therefore any testing on this code will not be performed.
+- All HTML and CSS code for this game was taken from the Code Institute Python Template and has not been altered in any way. Therefore, any testing on this code will not be performed.
 
 ### Lighthouse Testing
 
 - The Lighthouse tool in Chrome DevTools was used to mainly test the games performance and to make sure there were no performance issues when running the game. It performed well in the test, indicating a smoothly running game. 
 
-- The issues raised in the lighthouse test, mainly in accessibility and SEO was due to code in the template, and is not affected by the python code written by the developer.
+- The issues raised in the lighthouse test, mainly in accessibility and SEO was due to code in the template and is not affected by the python code written by the developer.
 
 <details>
 
@@ -332,9 +332,9 @@ In the following section I will provide an overview of the features included in 
 
 - Extensive manual testing was done throughout the developing process, where all user inputs have the desired effect. If a user input is invalid, a relevant error message will tell the user what to input instead.
 
-- All features respond as expected and give the correct error messages when user input is invalid. Messages will be displayed in a red text colour to make sure that the user understands that an input error has occured. To see the different messages, please check the features section.
+- All features respond as expected and give the correct error messages when user input is invalid. Messages will be displayed in a red text colour to make sure that the user understands that an input error has occurred. To see the different messages, please check the features section.
 
-- The game was also tested to make sure that the different parameters the user can choose will work as expected, so that the game boards will have the desired size and number of ships. The ship placement have been checked to make sure that no overlapping occurs and and all ships are deployed correctly. The computer inputs have been tested to make sure no duplicate guesses or other issues occur that are outside the control of the user. 
+- The game was also tested to make sure that the different parameters the user can choose will work as expected, so that the game boards will have the desired size and number of ships. The ship placement has been checked to make sure that no overlapping occurs and that all ships are deployed correctly. The computer inputs have been tested to make sure no duplicate guesses or other issues occur that are outside the control of the user. 
 
 - Testing was performed in both the Gitpod terminal and Code Institutes Heroku mock terminal in several different browser, such as Chrome, Edge and Firefox.
 
@@ -344,7 +344,7 @@ In the following section I will provide an overview of the features included in 
 
 - There was a validation issue with duplicate guesses. The turn continued instead of asking for a new guess. A solution was found by moving duplicate guess validation from validate_coordinates to make_guess inside the loop, so that if a duplicate guess is made, the user is prompted to make another guess inside the same loop as the user inputs are in.
 
-- User guesses returned a list while computer guesses returned a tuple as expected. An incorrect append to guesses in validate_coordinates was removed, as it was misstakenly placed there, and the append instead happens in the guess function.
+- User guesses returned a list while computer guesses returned a tuple as expected. An incorrect append to guesses in validate_coordinates was removed, as it was mistakenly placed there, and the append instead happens in the guess function.
 
 - When populating the boards, computer board ships overlapped because of an if statement checking for already added '@'. By changing to check if coordinates are in ships list, the issue was resolved.
 
@@ -412,7 +412,7 @@ The game was deployed using Heroku. The steps for the deployment process are:
 
 13. To enable automatic updates to the project, simply scroll up to **Automatic deploys** and click the **Enable Automatic Deploys** button.
 
-14. Your project is now hosted on Heroku, and the url can be found under the **Settings** tab, at **Domains**.
+14. Your project is now hosted on Heroku, and the URL can be found under the **Settings** tab, at **Domains**.
 
 The live link can be found here - [Battleship](https://battleship-pp3.herokuapp.com/)
 
@@ -458,7 +458,7 @@ All code used in the game that is not the developers is credited in code comment
 
   - The reason for using `if __name__ == "__main__"` came from [this post](https://stackoverflow.com/questions/419163/)
 
-- The print board loop in print_board was taken from [this youtube video](https://www.youtube.com/watch?v=alJH_c9t4zw).
+- The print board loop in print_board was taken from [this YouTube video](https://www.youtube.com/watch?v=alJH_c9t4zw).
 
 - [W3Schools](https://www.w3schools.com/) helped with mainly syntax issues and was very helpful when something wasn't acting as expected.
 
