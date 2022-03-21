@@ -57,7 +57,7 @@ def validate_name(name):
     Validates user_name, raises ValueError if name is empty
     or only consists of space(s).
     Parameter:
-        Takes user_name input.
+        name: Takes user_name input.
     Return:
         True if input is valid, False if not.
     """
@@ -74,7 +74,7 @@ def validate_name(name):
 def display_menu():
     """
     Displays the main menu from where the user can either
-    start the game, recieve instructions on how to play,
+    start the game, receive instructions on how to play,
     or exit the program. Prints a message if the input
     is not valid, asking for a valid option.
     Clear window source: https://stackoverflow.com/questions/2084508/
@@ -112,7 +112,10 @@ class GameBoard:
     or computer). Stores guesses made and the location
     of the randomized ships.
     Parameters:
-        GameBoard being built, user inputs, username and type of player.
+        self: GameBoard being built.
+        size, num_ships: User inputs.
+        name: Username chosen by user.
+        type: Type of player(user or computer).
     """
     def __init__(self, size, num_ships, name, type):
         self.size = size
@@ -131,7 +134,7 @@ class GameBoard:
         Source of the print gameboard loop:
         https://www.youtube.com/watch?v=alJH_c9t4zw&t=324s
         Parameters:
-            GameBoard being built.
+            self: GameBoard being built.
         """
         if self.type == "user":
             print(f"\n{self.name}'s gameboard")
@@ -153,7 +156,8 @@ class GameBoard:
         Prints 'X' for hit and '-' for miss.
         Inspired by Code Institute scope video.
         Parameters:
-            GameBoard being built, coordinate inputs from user.
+            self: GameBoard being built.
+            row, col: Coordinate inputs from user.
         Return:
             'Hit' if a ship is sunk, 'Miss' if not.
         """
@@ -168,14 +172,15 @@ class GameBoard:
     def add_ship(self, row, col, type="computer"):
         """
         Places ships on the board with the help
-        of randomized coordinated passed in from
+        of randomized coordinates passed in from
         populate_board.
         When placing on the users board, assigns
         a '@' to mark the location.
         Inspired by Code Institute scope video.
         Parameters:
-            GameBoard being built, random coordinates for appending ships
-            and type of player.
+            self: GameBoard being built.
+            row, col: Random coordinates for appending ships.
+            type: Type of player(user or computer).
         """
         if len(self.ships) >= self.num_ships:
             pass
@@ -191,7 +196,7 @@ def populate_board(board):
     for the ships to be placed on. Checks for
     already placed ships so no overlapping occurs.
     Parameter:
-        The GameBoard being populated.
+        board: The GameBoard being populated.
     """
     for ship in range(board.num_ships):
         row = randint(0, board.size-1)
@@ -207,7 +212,8 @@ def validate_coordinates(board, board_2, row, col):
     Prints if a guess is a hit or
     a miss and increments the score.
     Parameters:
-        Both GameBoards and coodinates of guesses.
+        board, board_2: Both GameBoards being validated.
+        row, col: Coordinates of guesses.
     """
     shot = board_2.guess(row, col)
     if shot == "Hit":
@@ -225,7 +231,7 @@ def make_guess(board, board_2):
     sure they are correct and prints the relevant error
     message if not.
     Parameters:
-        Both GameBoards to be guessed on.
+        board, board_2: Both GameBoards to be guessed on.
     """
     while True:
         try:
@@ -296,7 +302,7 @@ def instructions():
 
 def end():
     """
-    When user chooses exit, quits the game and prints a goodbye
+    When user chooses exit, ends the game and prints a goodbye
     message, with instructions on how to run the game again.
     Ascii art source:
     https://patorjk.com/software/taag/#p=display&f=Doom&t=Battleship
@@ -374,7 +380,10 @@ def new_game():
         print(f"{user_name}: {scores['user']}\n"
               f"Computer: {scores['computer']}\n")
 
-        if scores["user"] >= num_ships:
+        if scores["user"] >= num_ships and scores["computer"] >= num_ships:
+            print("Its a draw!")
+            print("Taking you back to the main menu...\n")
+        elif scores["user"] >= num_ships:
             print(f"{Colours.OKGREEN}\nCongratulations! "
                   f"You won the game!{Colours.ENDC}")
             print("Taking you back to the main menu...\n")
@@ -398,8 +407,7 @@ def new_game():
 
 def main():
     """
-    Run all program functions
-    move to new game?
+    Run all program functions.
     """
     welcome_page()
     input_name()
