@@ -383,6 +383,7 @@ def new_game():
         if scores["user"] >= num_ships and scores["computer"] >= num_ships:
             print("Its a draw!")
             print("Taking you back to the main menu...\n")
+            display_menu()
         elif scores["user"] >= num_ships:
             print(f"{Colours.OKGREEN}\nCongratulations! "
                   f"You won the game!{Colours.ENDC}")
