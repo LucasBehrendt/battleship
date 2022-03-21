@@ -57,9 +57,9 @@ To read more about the game rules, please visit this [Wikipedia page](https://en
 
 - Provide a simple and intuitive navigation throughout the game and give the user a positive overall impression.
 
-- Give the user the choice to modify the game board and number of ships, to keep the user engaged over more than a single round.
+- Give the user the choice to modify the game board and number of ships, to keep the user engaged over more than a single game.
 
-- Write clean and readable code on which the game runs, and make sure the game doesn't break on any user inputs. 
+- Write clean and readable code on which the game runs, and make sure the game doesn't break on any user inputs.
 
 ### User Goals
 
@@ -75,7 +75,7 @@ To read more about the game rules, please visit this [Wikipedia page](https://en
 
 ### Structure
 
-The structure of the game is kept simple and intuitive to make sure the user can easily navigate the game and have a positive experience. The main menu works as a hub from where the user can access the different points of the game, and when a game is finished the user is taken back to the menu. By keeping the structure simple and not too clotty, there is a pleasing flow to the game. If desired, a round of Battleship can be played in just a few minutes to reach as wide an audience as possible.
+The structure of the game is kept simple and intuitive to make sure the user can easily navigate the game and have a positive experience. The main menu works as a hub from where the user can access the different points of the game, and when a game is finished the user is taken back to the menu. By keeping the structure simple and not too clotty, there is a pleasing flow to the game. If desired, a game of Battleship can be played in just a few minutes to reach as wide an audience as possible.
 
 ### Design
 
@@ -199,7 +199,7 @@ In the following section I will provide an overview of the features included in 
 
 - If a hit is made by either side, the enemy board receives an 'X' to mark a sunken ship. A miss will result in a '-' to mark a previously missed guess.
 
-- As the game progresses the boards will fill with hit and miss symbols until a winner is declared. When all ships on either board are sunk, the game ends and the user is taken back to the main menu, where they can start again with new parameters if they wish.
+- As the game progresses the boards will fill with hit and miss symbols until either a winner is declared, or a draw occurs. When all ships on either board are sunk, the game ends and the user is taken back to the main menu, where they can start again with new parameters if they wish.
 
 <details>
 
@@ -233,6 +233,15 @@ In the following section I will provide an overview of the features included in 
 
 ![Game Won 1](docs/images/game-won-1.png)
 ![Game Won 2](docs/images/game-won-2.png)
+
+</details>
+
+<details>
+
+<summary>Game Draw image</summary>
+
+![Game Draw 1](docs/images/game-draw-1.png)
+![Game Draw 2](docs/images/game-draw-2.png)
 
 </details>
 
@@ -336,7 +345,7 @@ In the following section I will provide an overview of the features included in 
 
 - The game was also tested to make sure that the different parameters the user can choose will work as expected, so that the game boards will have the desired size and number of ships. The ship placement has been checked to make sure that no overlapping occurs and that all ships are deployed correctly. The computer inputs have been tested to make sure no duplicate guesses or other issues occur that are outside the control of the user. 
 
-- Testing was performed in both the Gitpod terminal and Code Institutes Heroku mock terminal in several different browser, such as Chrome, Edge and Firefox.
+- Testing was performed in both the Gitpod terminal and Code Institutes Heroku mock terminal in several different browsers, such as Chrome, Edge and Firefox.
 
 ### Fixed Bugs
 
